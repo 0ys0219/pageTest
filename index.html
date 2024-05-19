@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GitHub Pages</title>
+  </head>
+  <body>
+    <table>
+      <thead>
+        <td>現有金額(日幣)</td>
+        <td>目標金額(台幣)</td>
+        <td>目標匯率(銀行買入)</td>
+        <td>成本(台幣)</td>
+        <td>漲幅(%)</td>
+      </thead>
+      <tbody>
+        <td><input id="money" type="number" autocomplete="false" /></td>
+        <td><input id="targetMoney" type="number" autocomplete="false" /></td>
+        <td><input id="targetRate" type="number" autocomplete="false" /></td>
+        <td><input id="cost" type="number" autocomplete="false" /></td>
+        <td><input id="rate" type="number" autocomplete="false" /></td>
+      </tbody>
+    </table>
+
+    <button onclick="getResult()">計算</button>
+  </body>
+  <script>
+    let money = document.getElementById("money");
+    let targetMoney = document.getElementById("targetMoney");
+    let targetRate = document.getElementById("targetRate");
+    let cost = document.getElementById("cost");
+    let rate = document.getElementById("rate");
+
+    function getResult() {
+      console.log(money.value);
+      if (money.value.length === 0) {
+        return;
+      }
+
+      if (targetMoney.value.length !== 0 && targetRate.value.length === 0) {
+        targetRate.value = (
+          Number(targetMoney.value) / Number(money.value)
+        ).toFixed(4);
+      }
+      if (targetMoney.value.length === 0 && targetRate.value.length !== 0) {
+        targetMoney.value = (
+          Number(money.value) * Number(targetRate.value)
+        ).toFixed();
+      }
+
+      if (cost.value.length !== 0) {
+        rate.value = (
+          (Number(targetMoney.value) / Number(cost.value) - 1) *
+          100
+        ).toFixed(2);
+      }
+    }
+  </script>
+</html>
