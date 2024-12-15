@@ -24,6 +24,11 @@
     </table>
 
     <button onclick="getResult()">計算</button>
+
+    <div>
+      <h1 id="title">大家好，我有好多作業</h1>
+      <button onclick="randomColor()">隨機</button>
+    </div>
   </body>
   <script>
     let money = document.getElementById("money");
@@ -31,6 +36,7 @@
     let targetRate = document.getElementById("targetRate");
     let cost = document.getElementById("cost");
     let rate = document.getElementById("rate");
+    let title = document.getElementById("title");
 
     function getResult() {
       console.log(money.value);
@@ -55,6 +61,12 @@
           100
         ).toFixed(2);
       }
+    }
+
+    function randomColor() {
+      let colors = ["black", "red", "blue", "yellow", "green", "gray", "brown"];
+
+      title.style.color = colors[Math.floor(Math.random() * 7)];
     }
   </script>
 </html>
